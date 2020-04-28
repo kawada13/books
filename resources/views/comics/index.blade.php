@@ -8,7 +8,7 @@
         <li class="active">ジャンル</li>
      </ol>
      
-     {!! link_to_route('signup.get', 'ジャンルを追加', [], ['class' => 'btn btn-outline-secondary btn-block']) !!}
+     {!! link_to_route('folders.create', 'ジャンルを追加', [], ['class' => 'btn btn-outline-secondary btn-block']) !!}
      <div class="list-group" style="max-width: 400px;">
     　@foreach($folders as $folder)
     　   <a

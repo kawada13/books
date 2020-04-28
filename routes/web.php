@@ -30,11 +30,8 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/folders/{id}/comics', 'ComicsController@index')->name('comics.index');
     
-    
-    
-    
-    
-    
+    Route::get('/folders/create', 'FoldersController@create')->name('folders.create');
+    Route::post('/folders/create', 'FoldersController@store')->name('folders.store');
     
     
 });
