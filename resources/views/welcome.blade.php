@@ -2,8 +2,12 @@
 
 @section('content')
    <div class="jumbotron text-center">
-        <h1 class="display-4">comics</h1>
-        <p class="lead">気になる漫画を整理</p>
-        {!! link_to_route('signup.get', '登録!', [], ['btn btn-success btn-lg']) !!}
+       @if (Auth::check())
+          {{ Auth::user()->name }}
+       @else
+          <h1 class="display-4">comics</h1>
+          <p class="lead">気になる漫画を整理</p>
+          {!! link_to_route('signup.get', '登録!', [], ['class' => 'btn btn-primary btn-lg']) !!}
+       @endif
    </div>
 @endsection
