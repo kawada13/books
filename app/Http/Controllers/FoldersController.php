@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Folder;
 
+use App\Http\Requests\CreateFolder;
+
 class FoldersController extends Controller
 {
     public function create()
@@ -19,12 +21,8 @@ class FoldersController extends Controller
     }
     
     
-    public function store(Request $request)
+    public function store(CreateFolder $request)
     {
-        $this->validate($request, [
-            'genre' => 'required|max:191',
-        ]);
-
         
       $folder = new Folder;
       $folder->genre = $request->genre;

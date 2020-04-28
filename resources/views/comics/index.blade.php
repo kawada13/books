@@ -27,13 +27,14 @@
       <ol class="breadcrumb">
         <li class="active">漫画</li>
       </ol>
-      {!! link_to_route('signup.get', '漫画を追加', [], ['class' => 'btn btn-outline-secondary btn-block']) !!}
+      {!! link_to_route('comics.create', '漫画を追加', ['id' => $current_folder_id], ['class' => 'btn btn-outline-secondary btn-block']) !!}
       
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">タイトル</th>
             <th scope="col">状況</th>
+            <th scope="col">コメント</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
           <tr>
              <td>{{ $comic->title }}</td>
              <td><span class="label {{ $comic->status_class }}">{{ $comic->status_label }}</span></td>
+             <td>{{ $comic->comment }}</td>
              <td><a href="#">編集</a></td>
           </tr>
         </tbody>
