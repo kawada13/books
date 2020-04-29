@@ -36,8 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/folders/{id}/comics/create', 'ComicsController@create')->name('comics.create');
     Route::post('/folders/{id}/comics/create', 'ComicsController@store')->name('comics.store');;
     
-    Route::get('/folders/{id}/tasks/{comic_id}/edit', 'ComicsController@edit')->name('comics.edit'); 
-    Route::post('/folders/{id}/tasks/{comic_id}/edit', 'ComicsController@update')->name('comics.update');
+    Route::get('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@edit')->name('comics.edit'); 
+    Route::post('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@update')->name('comics.update');
     
     
 });

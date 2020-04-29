@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="row">
   
    <div class="col col-md-4">
@@ -43,11 +40,11 @@
              <td>{{ $comic->title }}</td>
              <td><span class="label {{ $comic->status_class }}">{{ $comic->status_label }}</span></td>
              <td>{{ $comic->comment }}</td>
-             <td><a href="#">編集</a></td>
+             <td>{!! link_to_route('comics.update', '編集', ['id' => $comic->folder_id, 'comic_id' => $comic->id]) !!}</td>
           </tr>
         </tbody>
         @endforeach
       </table>
    </div>
 </div>
- @endsection 
+  

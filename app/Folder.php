@@ -13,6 +13,10 @@ class Folder extends Model
         return $this->hasMany(Comic::class);
     }
     
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
 
 }

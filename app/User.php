@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comic::class);
     }
+    
+    public function folders()
+    {
+        return $this->hasMany(Folder::class);
+    }
 }

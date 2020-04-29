@@ -12,11 +12,14 @@ class FoldersTableSeeder extends Seeder
      */
     public function run()
     {
-        $genres = ['スポーツ', '恋愛', 'コメディ'];
+        $user = DB::table('users')->first(); 
+
+        $genres = ['スポーツ', '恋愛', '推理'];
 
         foreach ($genres as $genre) {
             DB::table('folders')->insert([
                 'genre' => $genre,
+                'user_id' => $user->id, 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);

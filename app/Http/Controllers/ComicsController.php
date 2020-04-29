@@ -10,6 +10,8 @@ use App\Comic;
 
 use App\Http\Requests\CreateComic;
 
+use App\Http\Requests\UpdateComic;
+
 class ComicsController extends Controller
 {
     public function index($id)
@@ -54,5 +56,32 @@ class ComicsController extends Controller
             'id' => $current_folder->id,
             ]);
     }
+    
+    public function edit(int $id, int $comic_id)
+   {
+    $comic = Comic::find($comic_id);
+
+    return view('comics.edit', [
+        'comic' => $comic,
+    ]);
+   }
+   
+   public function update(int $id, int $comic_id, UpdateComic $request)
+  {
+      
+    
+    $comic = Comic::find($comic_id);
+
+    
+    $comic->title = $request->title;
+    $comic->status = $request->status;
+    $comic->comment = $request->comment;
+    $comic->save();
+
+    
+    return redirect()->route('comics.index', [
+        'id' => $comic->folder_id,
+    ]);
+  }
     
 }
