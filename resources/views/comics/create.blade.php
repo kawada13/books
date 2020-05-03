@@ -13,10 +13,6 @@
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
                 </div>
                 
-                <div class="form-group">
-                    {!! Form::label('comment', 'コメント:') !!}
-                    {!! Form::text('comment', null, ['class' => 'form-control']) !!}
-                </div>
                 
                 <div class="form-group">
                    {!! Form::hidden('user_id', Auth::user()->id) !!}

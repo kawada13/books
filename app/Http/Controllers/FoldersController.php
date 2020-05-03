@@ -26,7 +26,7 @@ class FoldersController extends Controller
         
       $folder = new Folder;
       $folder->genre = $request->genre;
-      $folder->save();
+      \Auth::user()->folders()->save($folder);
 
     return redirect()->route('comics.index', [
         'id' => $folder->id,
@@ -34,4 +34,6 @@ class FoldersController extends Controller
 
         
     }
+    
+    
 }

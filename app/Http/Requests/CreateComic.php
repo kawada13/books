@@ -25,7 +25,6 @@ class CreateComic extends FormRequest
     {
         return [
             'title' => 'required|max:100',
-            'comment' => 'required|max:100',
         ];
     }
     
@@ -33,7 +32,6 @@ class CreateComic extends FormRequest
     {
     return [
         'title' => 'タイトル名',
-        'comment' => 'コメント',
     ];
     }
 }

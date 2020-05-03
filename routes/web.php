@@ -27,7 +27,7 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
     
-    
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/folders/{id}/comics', 'ComicsController@index')->name('comics.index');
     
     Route::get('/folders/create', 'FoldersController@create')->name('folders.create');
@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/folders/{id}/comics/create', 'ComicsController@store')->name('comics.store');;
     
     Route::get('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@edit')->name('comics.edit'); 
-    Route::post('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@update')->name('comics.update');
+    Route::put('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@update')->name('comics.update');
     
+    Route::delete('/folders/{id}/comics/{comic_id}', 'ComicsController@destroy')->name('comics.destroy');
     
 });

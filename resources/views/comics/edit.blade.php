@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-6">
-            {!! Form::model($comic, ['route' => ['comics.update', $comic->folder_id, $comic->id]]) !!}
+            {!! Form::model($comic, ['route' => ['comics.update', $comic->folder_id, $comic->id], 'method' => 'put']) !!}
         
                 <div class="form-group">
                     {!! Form::label('title', 'タイトル:') !!}
@@ -19,12 +19,6 @@
                        <option value="{{ $key }}"{{ $key == old('status', $comic->status) ? 'selected' : '' }}>{{ $val['label'] }}</option>
   　　　　　　　　　　　　　　　　　　　@endforeach
                    </select>
-                </div>
-                
-                
-                <div class="form-group">
-                    {!! Form::label('comment', 'コメント:') !!}
-                    {!! Form::text('comment', null, ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">

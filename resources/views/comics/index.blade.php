@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <div class="row">
   
    <div class="col col-md-4">
@@ -31,7 +34,6 @@
           <tr>
             <th scope="col">タイトル</th>
             <th scope="col">状況</th>
-            <th scope="col">コメント</th>
           </tr>
         </thead>
         <tbody>
@@ -39,12 +41,16 @@
           <tr>
              <td>{{ $comic->title }}</td>
              <td><span class="label {{ $comic->status_class }}">{{ $comic->status_label }}</span></td>
-             <td>{{ $comic->comment }}</td>
              <td>{!! link_to_route('comics.update', '編集', ['id' => $comic->folder_id, 'comic_id' => $comic->id]) !!}</td>
+             <td>
+                 {!! Form::model($comic, ['route' => ['comics.destroy', $comic->folder_id, $comic->id], 'method' => 'delete']) !!}
+                 {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                 {!! Form::close() !!}
+                 </td>
           </tr>
         </tbody>
         @endforeach
       </table>
    </div>
 </div>
-  
+@endsection

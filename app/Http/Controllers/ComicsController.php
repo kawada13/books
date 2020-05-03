@@ -16,28 +16,42 @@ class ComicsController extends Controller
 {
     public function index($id)
     {
-        $folders = Folder::all();
         
-        $current_folder = Folder::find($id);
+         $current_folder = Folder::find($id);
+         
+         if (\Auth::id() === $current_folder->user_id) {
+             
+             $folders = \Auth::user()->folders()->get();
         
-        $comics = $current_folder->comics()->get();
+       
+        
+             $comics = $current_folder->comics()->get();
 
-        return view('comics.index', [
+             return view('comics.index', [
             'folders' => $folders,
             'current_folder_id' => $id,
             'comics' => $comics,
-        ]);
+            ]);
+         }
+         
+         return back();
+        
     }
     
     
     public function create($id)
     {
         $comic = new Comic;
+        $current_folder = Folder::find($id);
         
-       return view('comics.create', [
-        'folder_id' => $id,
-        'comic' => $comic
-       ]);
+        if (\Auth::id() === $current_folder->user_id) {
+           return view('comics.create', [
+            'folder_id' => $id,
+            'comic' => $comic
+           ]);
+        }
+        
+        return back();
     }
     
     
@@ -45,9 +59,10 @@ class ComicsController extends Controller
     {
         
         $current_folder = Folder::find($id);
+        
+        if (\Auth::id() === $current_folder->user_id) {
         $comic = new Comic;
         $comic->title = $request->title;
-        $comic->comment = $request->comment;
         $comic->user_id = $request->user_id;
         
         $current_folder->comics()->save($comic);
@@ -55,15 +70,25 @@ class ComicsController extends Controller
         return redirect()->route('comics.index', [
             'id' => $current_folder->id,
             ]);
+        }
+        
+        return back();
     }
     
     public function edit(int $id, int $comic_id)
    {
     $comic = Comic::find($comic_id);
+    
+    $current_folder = Folder::find($id);
+    if (\Auth::id() === $current_folder->user_id) {
+    
 
     return view('comics.edit', [
         'comic' => $comic,
     ]);
+    
+    }
+    return back();
    }
    
    public function update(int $id, int $comic_id, UpdateComic $request)
@@ -71,17 +96,35 @@ class ComicsController extends Controller
       
     
     $comic = Comic::find($comic_id);
-
+    $current_folder = Folder::find($id);
+    
+     if (\Auth::id() === $current_folder->user_id) {
     
     $comic->title = $request->title;
     $comic->status = $request->status;
-    $comic->comment = $request->comment;
     $comic->save();
 
     
     return redirect()->route('comics.index', [
         'id' => $comic->folder_id,
     ]);
+    }
+     return back();
+     
   }
+  
+  
+    public function destroy(int $id, int $comic_id) {
+        
+        $comic = Comic::find($comic_id);
+        
+        $current_folder = Folder::find($id);
+        
+        $comic->delete();
+        
+        return redirect()->route('comics.index', [
+        'id' => $comic->folder_id,
+    ]);
+    }
     
 }
