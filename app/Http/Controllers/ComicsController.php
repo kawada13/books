@@ -58,6 +58,8 @@ class ComicsController extends Controller
     public function store(int $id, CreateComic $request) 
     {
         
+        
+        
         $current_folder = Folder::find($id);
         
         if (\Auth::id() === $current_folder->user_id) {

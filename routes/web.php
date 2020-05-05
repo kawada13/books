@@ -41,4 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::delete('/folders/{id}/comics/{comic_id}', 'ComicsController@destroy')->name('comics.destroy');
     
+    Route::get('/serch', 'SerchController@index')->name('serch.index');
+    Route::post('/serch', 'SerchController@serch')->name('serch.serch');
+    
 });
