@@ -41,13 +41,13 @@ class ComicsController extends Controller
     
     public function create($id)
     {
-        $comic = new Comic;
         $current_folder = Folder::find($id);
+        $response = null;
         
         if (\Auth::id() === $current_folder->user_id) {
            return view('comics.create', [
             'folder_id' => $id,
-            'comic' => $comic
+            'response' => $response,
            ]);
         }
         
@@ -57,7 +57,6 @@ class ComicsController extends Controller
     
     public function store(int $id, CreateComic $request) 
     {
-        
         
         
         $current_folder = Folder::find($id);

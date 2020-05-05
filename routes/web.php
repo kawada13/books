@@ -25,6 +25,8 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 
+
+
 Route::group(['middleware' => ['auth']], function () {
     
     Route::get('/', 'HomeController@index')->name('home');
@@ -34,14 +36,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/folders/create', 'FoldersController@store')->name('folders.store');
     
     Route::get('/folders/{id}/comics/create', 'ComicsController@create')->name('comics.create');
-    Route::post('/folders/{id}/comics/create', 'ComicsController@store')->name('comics.store');;
+    Route::post('/folders/{id}/comics/serch', 'SerchController@serch')->name('serch.serch');
+    Route::post('/folders/{id}/comics/create', 'ComicsController@store')->name('comics.store');
     
     Route::get('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@edit')->name('comics.edit'); 
     Route::put('/folders/{id}/comics/{comic_id}/edit', 'ComicsController@update')->name('comics.update');
     
     Route::delete('/folders/{id}/comics/{comic_id}', 'ComicsController@destroy')->name('comics.destroy');
-    
-    Route::get('/serch', 'SerchController@index')->name('serch.index');
-    Route::post('/serch', 'SerchController@serch')->name('serch.serch');
     
 });

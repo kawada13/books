@@ -27,7 +27,7 @@
       <ol class="breadcrumb">
         <li class="active">漫画</li>
       </ol>
-      {!! link_to_route('comics.create', '漫画を追加', ['id' => $current_folder_id], ['class' => 'btn btn-outline-secondary btn-block']) !!}
+      {!! link_to_route('comics.create', '漫画を検索して追加', ['id' => $current_folder_id], ['class' => 'btn btn-outline-secondary btn-block']) !!}
       
       <table class="table table-striped">
         <thead>

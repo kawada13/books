@@ -11,7 +11,6 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                 <li class="nav-item">ようこそ、{{ Auth::user()->name }}さん</li>
-                <li class="nav-item">{!! link_to_route('serch.index', '読みたい漫画を検索する', [], ['class' => 'nav-link']) !!}</li>
                     
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item dropdown">

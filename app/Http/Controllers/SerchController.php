@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Folder;
+
 class SerchController extends Controller
 {
     
-    public function index() {
+    public function index($id) {
         
         $response = null;
+        $current_folder = Folder::find($id);
+        
         return view('serch.index', [
             'response' => $response,
         ]);
@@ -20,9 +24,12 @@ class SerchController extends Controller
     
     public function serch(Request $request) {
        
+       
+    //   dd($request);
         
     $keyword = '';
     $response = null;
+    $folder_id = $request->folder_id;
 
     $url = 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404';
     
@@ -45,8 +52,9 @@ class SerchController extends Controller
     
     //   dd($response);
        
-       return view('serch.index', [
+       return view('comics.create', [
             'response' => $response,
+            'folder_id' => $folder_id
         ]);
     
     
